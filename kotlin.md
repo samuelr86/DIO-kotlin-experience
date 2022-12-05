@@ -1,5 +1,5 @@
 
-<h1 align="center"><b>KOTLIN</b></h1>
+<h1 align="center"><b>Kotlin</b></h1>
 
 <h2>Hello World</h2>
 
@@ -23,6 +23,7 @@ fun main()	{
 
 <h2>Funções</h2>
 
+<h3>Valores de parâmetros padrão e argumentos nomeados</h3>
 <p>1. Uma função simples que recebe um parâmetro do tipo <em>String</em> e retorna um <em>Unit</em>, ou seja, sem valor de retorno:</p>
 
 ```kotlin
@@ -64,5 +65,40 @@ fun main(){
 	
 }
 ```
+<h3>Parâmetros vararg</h3>
 
+<p>1. <b>Varargs</b> permitem que você passe qualquer número de argumentos, separando-os com vírgulas.</p>
+
+```kotlin
+fun printAll(vararg mensagens:String){ //indica que há inúmeros parâmetros do tipo String que podem ser lançados
+
+	for(m in mensagens) println(m) // imprime uma lista de parâmetros que serão passados
+}
+
+```
+<p>2. É possível também nomear argumentos no parâmetro.</p>
+
+```kotlin
+fun printAllWithPrefix(vararg mensagens: String, prefix: String){
+	for(m in mensagens) println(prefix + m)
+}
+```
+<p>3. Se tiver uma função que chamará outra função e que também for um vararg é necessário colocar uma notação [ * ]. Em tempo de execução um vararg é apenas um array, o operador permite chamada de outro vararg.</p>
+
+```kotlin
+fun log(vararg entrada :String){
+	printAll(*entrada)
+}
+``` 
+<p>As chamadas das funçoes acima podem ser chamadas na função principal [main()]:</p>
+
+```kotlin
+fun main(){
+	printAll("Hello", "Olá", "Hola")
+
+	printAllWithPrefix(prefix = "Greeting", "Hello", "Olá", "Hola")
+
+	log("Hello", "Olá", "Hola")
+}
+```
 <h2></h2>
