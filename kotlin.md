@@ -80,7 +80,7 @@ fun printAll(vararg mensagens:String){ //indica que há inúmeros parâmetros do
 
 ```kotlin
 fun printAllWithPrefix(vararg mensagens: String, prefix: String){
-	for(m in mensagens) println(prefix + m)
+	for(m in mensagens) println([prefix] + m)
 }
 ```
 <p>3. Se tiver uma função que chamará outra função e que também for um vararg é necessário colocar uma notação [ * ]. Em tempo de execução um vararg é apenas um array, o operador permite chamada de outro vararg.</p>
@@ -94,11 +94,48 @@ fun log(vararg entrada :String){
 
 ```kotlin
 fun main(){
-	printAll("Hello", "Olá", "Hola")
+	printAll("Hello", "Olá", "Hola") 
+	// Hello
+	// Olá
+	// Hola
 
-	printAllWithPrefix(prefix = "Greeting", "Hello", "Olá", "Hola")
+	printAllWithPrefix("Hello", "Olá", "Hola", "Greeting")
+	// [Greeting] Hello
+	// [Greeting] Olá
+	// [Greeting] Hola
 
 	log("Hello", "Olá", "Hola")
+	// Hello
+	// Olá
+	// Hola
 }
 ```
+<h2>Variáveis var e val</h2>
+
+<p>1. Declara uma variável <b><em>mutável</em></b> e a inicializa:</p>
+
+```kotlin
+var a: String = "Inicial"
+```
+<p>2. Declara uma variável <b><em>imutável</em></b> e a inicializa:</p>
+
+```kotlin
+val b: Int = 1
+```
+<p>3. Declara uma variável <b><em>imutável</em></b> e a inicializa sem específicar o tipo. O compilador infere o tipo Int.</p>
+
+```kotlin
+val c = 3
+```
+<p>4. Podemos declarar uma variável sem inicializar, porém a tentativa de usá-la pode gerar um erro do compilador.
+
+```kotlin
+var e: Int
+
+println(e)
+
+// Err: Variable 'e' must be initalized
+```
+Você é livre para escolher quando inicializá-la, no entanto, ela dever ser inicializada antes da primeira leitura.</p>
+
 <h2></h2>
