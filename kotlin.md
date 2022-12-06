@@ -187,3 +187,26 @@ fun main(){
 	println(describeString("Samuel")) // String of length 6
 }
 ```
+
+<h2>Classes</h2>
+<p>A declaração da classe consiste no nome da classe, no cabeçalho da classe (especificando seus parâmetros de tipo, o construtor primário, etc.) e no corpo da classe entre chaves. Tanto o cabeçalho quanto o corpo são opcionais; se a classe não tiver corpo, as chaves podem ser omitidas.</p>
+
+```kotlin
+class Customer
+
+class Contact(val id: Int, var email: String)
+
+
+fun  main(){
+
+	val customer = Customer() // como criar uma instância da classe Customer
+
+	val contact = Contact(1, "samuel@gmail.com") // criando um objeto com construtor personalizado
+
+	println(contact.id) // imprime 1 e é imutável por ter sido usado o val
+	println(contact.email) // imprime samuel@gmail.com
+	contact.email = "joao@gmail.com" // por ter sido usado o var posso renomeá-lo
+
+	println(contact.email) // imprime joao@gmail.com 
+}
+```
