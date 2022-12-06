@@ -134,8 +134,56 @@ var e: Int
 
 println(e)
 
-// Err: Variable 'e' must be initalized
+// Err: "Variable 'e' must be initalized"
 ```
 Você é livre para escolher quando inicializá-la, no entanto, ela dever ser inicializada antes da primeira leitura.</p>
 
-<h2></h2>
+<h2>Null Safety - Nulidade</h2>
+
+<p>Em um esforço para livrar o mundo de "<em>NullPointerException</em>", os tipos de variáveis em Kotlin não permitem a atribuição de <em>null</em>. Se precisar de uma variável que possa ser nula, declare-a anulável adicionando "?" no final de seu tipo.</p>
+
+```kotlin
+var neverNull : String //Isso não pode ser nulo
+
+var anulavel : String  ? // você pode manter um nulo aqui
+anulavel = null
+```
+<p>Uma outra situação, você tem uma função que recebe um valor não-nulo...
+
+```kotlin
+fun strLength(notNull : String): Int{
+	return notNull.length
+}
+```
+
+... se chamar o neverNull, o código vai rodar normalmente. Porém se chamar o anulavel gerará um erro de compilação.
+
+```kotlin
+strLength(neverNull) //ok
+strLength(anulavel) // Err: "Null can not be a value of a non-null typ String"
+```
+De outra forma, caso nossa função receba um parâmetro nulo podemos colocar no retorno uma situação se caso uma condição venha de uma variável nula retorne zero.
+
+```kotlin
+fun strLength(str : String ?): Int{
+	return str?.length ?: 0 
+}
+```
+</p>
+<p>Um exemplo de como podemos trabalhar com nulos em Kotlin.</p>
+
+```kotlin
+fun describeString (maybeString: String?): String{
+    if (maybeString != null && maybeString.length > 0) {        
+        return "String of length ${maybeString.length}"
+    } else {
+        return "Empty or null string"                          
+    }
+}
+
+fun main(){
+	println(describeString(null)) // Empty or null string
+	println(describeString("")) // Empty or null string
+	println(describeString("Samuel")) // String of length 6
+}
+```
