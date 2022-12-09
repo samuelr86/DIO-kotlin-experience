@@ -199,7 +199,7 @@ class Contact(val id: Int, var email: String)
 
 fun  main(){
 
-	val customer = Customer() // como criar uma instância da classe Customer
+	val customer = Customer() // como criar uma instância da classe Customer com construtor padrão
 
 	val contact = Contact(1, "samuel@gmail.com") // criando um objeto com construtor personalizado
 
@@ -210,3 +210,49 @@ fun  main(){
 	println(contact.email) // imprime joao@gmail.com 
 }
 ```
+<h3>Generics - Classes Genéricas</h3>
+
+<p>Generics são um mecanismo que se tornou padrão nas linguagens modernas. As classes e funções genéricas aumentam a capacidade de reutilização de código ao encapsular a lógica comum que é independente de um tipo genérico específico. </p>
+
+```kotlin
+class MutableStack<E>(vararg items:E){
+	private val elements = items.toMutableList() 	//1
+
+	fun push(element: E) = elements.add(element) 	//2
+
+	fun peek():E = elements.last() 					//3
+
+	fun pop():E = elements.removeAt(elements.size - 1)
+
+	fun isEmpty() = elements.isEmpty()
+
+	fun size() = elements.size
+
+	override fun toString() = "MutableStack(${elements.joinToString()})"
+}
+
+```
+
+<ol>
+	<li>Declaração de uma classe genérica onde <E> é chamado de parâmetro de tipo genérico, se fosse usado um tipo específico, por exemplo "Int", teriamos <em>class MutableStack < Int></em>.</li>
+	<li>Uma função <em>push</em> que recebe um elemento do tipo genérico E.
+	</li>
+	<li>Aqui você pega o ultimo elemento sem remover, usa o tipo E como retorno.</li>
+</ol>
+
+<h3>Funções genéricas</h3>
+
+<p>Pode-se gerar também funções genéricas de um tipo específico. Uma função utilitária para criar pilhas mutáveis:</p>
+
+```kotlin
+fun <E> mutableStackOf(vararg elements:E) = MutableStack(*elements)	//1
+
+fun main(){
+	val stack = mutableStackOf(0.62, 3.14, 2.7) 	//2
+	println(stack)
+}
+```
+<ol>
+	<li>Criação de uma função genérica que recebe como parâmetro a classe MutableStack </li>
+	<li>Em uma variável imutável a função é chamada, instanciando uma lista com 3 valores.</li>
+</ol>
