@@ -256,3 +256,4 @@ fun main(){
 	<li>Criação de uma função genérica que recebe como parâmetro a classe MutableStack </li>
 	<li>Em uma variável imutável a função é chamada, instanciando uma lista com 3 valores.</li>
 </ol>
+
