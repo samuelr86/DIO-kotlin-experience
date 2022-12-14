@@ -90,13 +90,13 @@ fun updatePointsCredit(accountId:Int){
 }
 
 fun accountsReport(){
-    println("EZ-Pass report:)
+    println("EZ-Pass report:")
     EZPassReport.forEach{   //5
         k, v -> println("ID $k: credit $v")
     }
 }
 
-fun main(args: Array<String>) { //6
+fun main() { //6
     accountsReport() // exibe relatorio e verifica se todas as contas tem 100 pontos
     updatePointsCredit(1) // conta 1 soma 15 total 115
     updatePointsCredit(1) // conta 1 soma 15 total 130
